@@ -133,3 +133,60 @@ VALUES
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Connecting to the Database
+----------------------------
+When working with databases, you may have used a graphical tool such as Postbird, PgAdmin, or PhpMyAdmin. These tools are clients, which create a connection to the database server and 
+send commands to it.
+
+Similarly, we will be setting up PHP to act as a client which will send queries to PostgreSQL.
+
+To connect to a server, a client needs to know where it is. We provide this information in the form of a DSN (data source name), which holds our database type (PostgreSQL), hostname, and 
+database name. The hostname contains the location of the database. If PostgreSQL is running on the same host (computer) as PHP, we use localhost. If it’s running on a remote server, we 
+use its IP address or domain name. For Codecademy’s environment, we will use /tmp.
+
+// Assign variables for the hostname and database name
+$hostname = '/tmp';
+$dbname = 'ccuser';
+
+// Create the DSN (data source name)
+$dsn = "pgsql:host=$hostname;dbname=$dbname";
+
+The first part of the DSN is the prefix, where we specify which database system to use. For PostgreSQL, that is pgsql. Then we add a colon, followed by a key/value pair containing the 
+hostname and database name, separated by a semi-colon. The DSN uses a precise format, so it’s important not to include spaces or extra characters.
+
+We’ll also need to store the username and password of an account with the correct permissions for the database.
+
+$username = 'ccuser';
+$password = 'pass';
+
+We’ll start the connection by creating a database object from the PDO class and instantiating it using the new keyword. The PDO constructor takes the $dsn, $username, and $password 
+variables as its arguments in that order. If the connection is successful, the database object will be assigned to $db.
+
+$db = new PDO($dsn, $username, $password);
+
+After we complete our database operations, we will end the connection by setting the database object and any of its references to null. We can do this with:
+
+$db = null;
+
+index.php
+---------
+<?php
+
+// Set the hostname as '/tmp'
+$hostname = '/tmp';
+// Set the database name as 'ccuser'
+$dbname = 'ccuser';
+// Set the username and password with permissions to the database
+$username = 'ccuser';
+$password = 'pass';
+
+// Create the DSN (data source name) by combining the database type (PostgreSQL), hostname and dbname
+$dsn = "pgsql:host=$hostname;dbname=$dbname";
+// Create a PDO object
+$db = new PDO($dsn, $username, $password);
+// Terminate db connection
+$db = null;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
