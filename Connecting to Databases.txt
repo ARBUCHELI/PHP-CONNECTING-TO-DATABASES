@@ -189,4 +189,104 @@ $db = null;
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Creating Queries
+------------------
+Now that we’ve created a database object, $db, we can call its methods to fetch data from the database.
+
+Let’s take a look at an example database. It contains a books table with a list of books with their id, title, author, and published year.
+
+id	title	author	year
+1	Don Quixote	Miguel de Cervantes	1605
+2	Robinson Crusoe	Daniel Defoe	1719
+3	Pride and Prejudice	Jane Austen	1813
+4	Emma	Jane Austen	1816
+5	A Tale of Two Cities	Charles Dickens	1859
+
+We’ll begin with a query to fetch book titles. We’ll use the query() method on the $db object to create and execute the query. We can do this by referencing the $db object with the object 
+operator (->) before calling the query() method.
+
+// Create the query
+$bookQuery = $db->query('SELECT title FROM books');
+
+Does the syntax in parenthesis look familiar? That’s because it’s a regular SQL query that is understood by the database.
+
+Now let’s fetch the result of the query and assign it to the $book variable. We do this by calling the fetch() method on $bookQuery.
+
+// Fetch the first book and assign it to $book 
+$book = $bookQuery->fetch(); 
+
+Although our SELECT statement above queries the database for all book titles, the fetch() method returns only one result.
+
+To return a list of all book titles, we can use the fetchAll() method instead:
+
+// Fetch all books and assign them to $books
+$books = $bookQuery->fetchAll(); 
+
+If we use print_r to look at the value of $book, we’ll see that the data is returned as both an ordered (indexed) and associative array.
+
+Array ( [title] => Don Quixote [0] => Don Quixote )
+
+We can change that by setting a fetch mode, which tells PDO in what format to return our data. To get our book as an associative array, we pass PDO::FETCH_ASSOC as an argument to the 
+fetch() method.
+
+// Fetch the next row and assign the result to $book
+$book = $bookQuery->fetch(PDO::FETCH_ASSOC);
+
+If we check $book now, we’ll see:
+
+Array ( [title] => Don Quixote )
+
+index.php
+---------
+<?php 
+
+// Database setup:
+$hostname = '/tmp';
+$dbname = 'ccuser';
+$username = 'ccuser';
+$password = 'pass';
+$dsn = "pgsql:host=$hostname;dbname=$dbname";
+$db = new PDO($dsn, $username, $password);
+
+// Create a query to get the id, title, and author, and assign it to $booksQuery
+$bookQuery = $db->query('SELECT id, title, author FROM books');
+
+// Fetch one book using the fetch() method and assign it to the $book variable.
+$book = $bookQuery->fetch(PDO::FETCH_ASSOC);
+
+// Fetch all books using the fetchAll() method and assign the result to the $books variable.
+$books = $bookQuery->fetchAll(PDO::FETCH_ASSOC);
+
+// Loop over the $books array and echo the title of each book, followed by a line break.
+foreach($books as $book) {
+  echo $book['title'] . "\n";
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
