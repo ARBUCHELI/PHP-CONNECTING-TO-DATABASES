@@ -4,7 +4,7 @@
 $hostname = '/tmp';
 $dbname = 'ccuser';
 $username = 'ccuser';
-$password = 'pass'
+$password = 'pass';
 $dsn = "pgsql:host=$hostname;dbname=$dbname";
 $db = new PDO($dsn, $username, $password);
 
