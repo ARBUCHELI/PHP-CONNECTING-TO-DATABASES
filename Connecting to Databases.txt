@@ -12,7 +12,7 @@ Process information
 Apply business logic
 Communicate with customers, vendors, and services
 Tell the database which operations to perform and when
-We will connect a PostgreSQL database to:
+We will connect a PostgreSQL database to
 
 Store data
 Read, write, update, and delete data when PHP instructs it
