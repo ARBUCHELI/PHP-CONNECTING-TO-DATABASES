@@ -472,7 +472,7 @@ try {
     $updateBookQuery = null;
 
     // Finally, setting the connection to null will close it
-    $db = null
+    $db = null;
 
 } catch (\Exception $e) {
     // If an error is thrown, catch it, echo the message, then exit
