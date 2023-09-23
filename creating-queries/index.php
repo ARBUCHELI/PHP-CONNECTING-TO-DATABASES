@@ -1,7 +1,7 @@
 <?php 
 
 // Database setup:
-$hostname = '/tmp';
+//$hostname = '/tmp';
 $dbname = 'ccuser';
 $username = 'ccuser';
 $password = 'pass';
