@@ -2,7 +2,7 @@
 
 // Database setup:
 $hostname = '/tmp';
-$dbname = 'ccuser';
+//$dbname = 'ccuser';
 $username = 'ccuser';
 $password = 'pass';
 $dsn = "pgsql:host=$hostname;dbname=$dbname";
