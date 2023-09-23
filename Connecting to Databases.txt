@@ -477,7 +477,7 @@ try {
 } catch (\Exception $e) {
     // If an error is thrown, catch it, echo the message, then exit
     echo $e->getMessage();
-    exit()
+    exit();
 }
 
 
