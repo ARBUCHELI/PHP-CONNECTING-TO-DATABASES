@@ -19,5 +19,5 @@ $books = $bookQuery->fetchAll(PDO::FETCH_ASSOC);
 
 // Loop over the $books array and echo the title of each book, followed by a line break.
 foreach($books as $book) {
-  echo $book['title'] . "\n"
+  echo $book['title'] . "\n";
 }
